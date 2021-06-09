@@ -9,13 +9,13 @@ def fibo(n, a, b, i=0):
 
 while True:
     print("If you want to quit, enter exit")
-    b=int(sys.argv[1])
+    if len(sys.argv) => 1:
+        a = sys.argv[1]
+    else:
+        a = input("Enter Fibonacci number: ")
     if str(a) == "exit":
         break
-    if b:
-        fibo(b, 0, 1)
-    else:
-        a=int(input("Enter number: "))
-        fibo(a, 0, 1)
+    fibo(int(a), 0, 1)
+    
 
 
