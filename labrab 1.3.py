@@ -7,18 +7,21 @@ def gen_file(size, symbols="latin", line=(10,50), word=(5,9), outname="gen_file.
 	asking=input("Enter option")
 	with open(f"{outname}", 'w') as gener_file:
 		while cur_size <= size_of_file:
+			#Генерация строки
 			if type(line)==tuple:
 				lin_len=random.randrange(line[0], line[1]+1)
 			else:
 				lin_len=line
 			str_gen=[]
 			for i in lin_len:
+				# Начало генерации строки по словам
 				if type(word)==tuple:
 					word_len=random.randrange(word[0], word[1]+1)
 				else:
 					word_len=word
 				word_gen=[]
 				for j in word_len:
+					#Начало генерации слова по буквам
 					if symbols == "latin":
 						word_let=random.randrange(97,123)
 					elif symbols == "cyrillic":
@@ -27,8 +30,10 @@ def gen_file(size, symbols="latin", line=(10,50), word=(5,9), outname="gen_file.
 						word_let=random.randrange(48, 58)
 					word_gen.append(chr(word_let))
 					cur_size += getsizeof(chr(word_let))
+					# Отслеживание размера файла
 				gw=''.join(word_gen)
 				str_gen.append(gw)
+				# Создание нового слова и добавление его в будущую строку
 			sg=" ".join(str_gen)
 			gener_file.write(gw + "\n")
 			stat_of_proc=(cur_size/size_of_file)*100
@@ -36,6 +41,7 @@ def gen_file(size, symbols="latin", line=(10,50), word=(5,9), outname="gen_file.
 				break
 			if asking == 'f':
 				print("Current process is on " + stat_of_proc + " per cent complete")
+			# Способ прервать процесс или отобразить его состояние
 
 
 if len(sys.argv) > 1:
